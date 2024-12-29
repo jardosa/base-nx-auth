@@ -18,6 +18,7 @@
   "workspaces": [
     "libs/**",
     "packages/**",
-    "apps/frontend"
+    "apps/frontend",
+    "apps/api"
   ]
 }
