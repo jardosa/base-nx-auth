@@ -4,7 +4,6 @@ import { auth } from './utils/auth.js';
 import { cors } from 'hono/cors';
 import { showRoutes } from 'hono/dev';
 import { lead } from './modules/leads/controllers/lead.route.js';
-import migrator from './database/migrate.js';
 
 export const app = new Hono<{
 	Variables: {
@@ -81,12 +80,6 @@ app.route('/lead', lead)
 
 const port = process.env.PORT as unknown as number || 3000
 console.log(`Server is running on http://localhost:${port}`)
-
-// TODO: Make npm script for this
-const { error, results } = await migrator.migrateToLatest()
-if (error) console.log('Migration Errors', error)
-if (results?.length) console.log('Migration Results', results)
-
 
 serve({
 	fetch: app.fetch,
