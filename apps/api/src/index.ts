@@ -1,9 +1,10 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
-import { auth } from './utils/auth.js';
-import { cors } from 'hono/cors';
 
-const app = new Hono()
+import { cors } from 'hono/cors';
+import { auth } from './utils/auth.js';
+
+export const app = new Hono()
 
 
 app.use(
@@ -21,13 +22,13 @@ app.use(
 app.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 
 app.get('/', (c) => {
-  return c.text('Hello Hono!')
+	return c.text('Hello Hono!')
 })
 
 const port = 3000
 console.log(`Server is running on http://localhost:${port}`)
 
 serve({
-  fetch: app.fetch,
-  port
+	fetch: app.fetch,
+	port
 })
