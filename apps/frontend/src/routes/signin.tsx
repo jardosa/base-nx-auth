@@ -37,6 +37,7 @@ function RouteComponent() {
     );
   };
 
+  const googleSignIn = () => signInWithGoogle(`http://localhost:3001/${searchParams["redirect"] ?? ""}`);
   return (
     <div>
       <input type="text" onChange={(e) => setEmail(e.target.value)} />
@@ -48,7 +49,7 @@ function RouteComponent() {
       />
 
       <button onClick={signInWithEmail}>Sign In</button>
-      <button onClick={signInWithGoogle}>Sign In With Google</button>
+      <button onClick={googleSignIn}>Sign In With Google</button>
     </div>
   );
 }
